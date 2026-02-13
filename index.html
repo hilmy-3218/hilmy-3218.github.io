@@ -1,0 +1,417 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.3.0/css/all.min.css">
+  <link rel="stylesheet" href="css/index.css">
+  <link rel="stylesheet" href="css/index2.css">
+  <title>Portofolio</title>
+</head>
+<body>
+  <!-- navbar -->
+  <header>
+    <nav class="navbar">
+      <h2 class="logo"><a href="#">MyPorto<span class="biru">folio</span></a></h2>
+      <input type="checkbox" id="menu-toggler">
+      <label for="menu-toggler" id="hamburger-btn">
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="white" width="24px" height="24px">
+          <path d="M0 0h24v24H0z" fill="none"/>
+          <path d="M3 18h18v-2H3v2zm0-5h18V11H3v2zm0-7v2h18V6H3z"/>
+        </svg>
+      </label>
+      <ul class="all-links">
+        <li><a href="#pertama">Beranda</a></li>
+        <li><a href="#kedua">Tentang</a></li>
+        <li><a href="#ketiga">Projek</a></li>
+        <li><a href="#software-dev">software</a></li>
+        <li><a href="#kelima">Sertifikat</a></li>
+      </ul>
+    </nav>
+  </header>
+  <!-- akhir navbar -->
+   <!-- cursor -->
+  <div class="cursor" id="cursor"><div class="core"></div></div>
+  <div class="ripple" id="ripple"></div>
+  <!-- pertama -->
+  <section class="pertama" class="star-section" id="pertama">
+    <canvas id="stars"></canvas>
+    <div class="bungkus">
+        <div class="hero-content">
+            <h3><span class="biru">Hai</span>, Namaku</h3>
+            <h1>Muhammad <span class="biru">Hilmiy</span></h1>
+            <h3>Siswa <span class="biru">SMKN 2 </span>Kota Kediri</h3>
+            <p>Saya adalah seorang pelajar yang antusias di bidang teknologi, Saya terus belajar dan mengembangkan kemampuan saya dalam HTML, CSS, JavaScript dan lain lain.</p>
+            <button class="btn_tentang">
+              <span class="button_lg">
+                  <span class="button_sl"></span>
+                  <span class="button_text"><a href="#kedua">Tentang</a></span>
+              </span>
+            </button>
+        </div>
+        <div class="gumul">
+            <div class="scene">
+              <div class="robot">
+                <div class="greeting" id="greeting">Halo!</div>
+
+                <!-- Kepala -->
+                <div class="cube" id="head">
+                  <div class="face front">
+                    <div class="eyes">
+                      <div class="eye-container">
+                        <div>
+                          <div class="eye-line"></div>
+                        </div>
+                        <div>
+                          <div class="eye-line"></div>
+                        </div>
+                      </div>
+                      <div class="smile">
+                        <div class="smile-line"></div>
+                      </div>
+                    </div>
+                  </div>
+                  <div class="face back"></div>
+                  <div class="face right"></div>
+                  <div class="face left"></div>
+                  <div class="face top"></div>
+                  <div class="face bottom"></div>
+                </div>
+
+                <!-- Badan -->
+                <div class="body" id="body">
+                  <div class="arm left" id="left-arm">
+                    <div class="hand"><span></span></div>
+                  </div>
+                  <div class="arm right" id="right-arm">
+                    <div class="hand"><span></span></div>
+                  </div>
+                </div>
+              </div>
+                <div class="stage"></div>
+                  <div class="particles">
+                  <span></span>
+                  <span></span>
+                  <span></span>
+                  <span></span>
+                  <span></span>
+                </div>
+            </div>
+        </div>
+    </div>
+  </section>
+  <!-- kedua -->
+  <section class="kedua" id="kedua">
+    <div class="tentang">
+      <div class="tentang_conta scroll-anim">
+        <div class="ten_gam">
+          <img src="img/profil.jpeg" alt="Foto Profil">
+        </div>
+        <div class="ten_teks">
+          <h2>Ten<span class="biru">tang</span></h2>
+          <p>Muhammad Hilmiy Dwiandi adalah seorang siswa SMKN 2 Kota Kediri yang saat ini duduk di jurusan Teknik Komputer dan Jaringan. Lahir pada 10 Mei 2007, saya memiliki minat besar terhadap teknologi, terutama di bidang komputer.</p>
+          <div class="icons">
+            <a href="https://www.instagram.com/hilllsss_10?igsh=N29lZXBnOGgxOXpq" class="fb"><i class="fab fa-instagram"></i></a>
+            <a href="https://github.com/hilmy-3218" class="git"><i class="fab fa-github"></i></a>
+            <a href="https://www.tiktok.com/@m.hilmy_" class="yt"><i class="fab fa-tiktok"></i></a>
+            <a href="game/dashboard.html" class="game_com"><i class="fa-solid fa-gamepad"></i></a>
+            <button id="chatbot-btn">Chat <span class="biru">Bot <i class="fa-solid fa-robot"></i></span></button>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+  <!-- ketiga -->
+  <section class="ketiga" id="ketiga">
+    <h2 class="scroll-anim">Pro<span>jek</span></h2>
+    <div class="service-cards scroll-anim">
+      <div class="card">
+        <div class="icon">📖</div>
+        <h3>Template html css</h3>
+        <p>Web yang berisi template html css dan javascript.</p>
+        <a href="https://punyahilmy.42web.io/" class="btn">Lanjut</a>
+      </div>
+      <div class="card">
+        <div class="icon">💼</div>
+        <h3>Web Bisnis</h3>
+        <p>Proyek perencanaan bisnis bernama zhainnovate.</p>
+        <a href="https://hilmy-3218.github.io/" class="btn">Lanjut</a>
+      </div>
+      <div class="card">
+        <div class="icon">📚</div>
+        <h3>elearning</h3>
+        <p>e-learning sederhana untuk mempermudah guru dan siswa dalam belajar online.</p>
+        <a href="https:hillearn.42web.io" class="btn">Lanjut</a>
+      </div>
+    </div>
+  </section>
+  <!-- keempat -->
+    <section class="software-section" id="software-dev">
+    <div class="cont_soft">
+      <h2 class="scroll-anim">Pengem<span class="biru">bangan</span> Perangkat <span class="biru">lunak</span></h2>
+      <p class="para scroll-anim">Beberapa teknologi yang saya gunakan dalam proses pengembangan aplikasi modern</p>
+      <div class="scroll-wrapper scroll-anim">
+        <button class="scroll-btn scroll-left" onclick="scrollLeft()">❮</button>
+        <div class="scroll-container" id="scrollBox">
+          <!-- MySQL -->
+          <div class="tech-card">
+            <img src="https://cdn.jsdelivr.net/gh/devicons/devicon/icons/mysql/mysql-original.svg" alt="MySQL">
+            <h3>MySQL</h3>
+            <p>Manajemen database relasional untuk menyimpan dan mengelola data aplikasi.</p>
+          </div>
+          <!-- Git Bash -->
+          <div class="tech-card">
+            <img src="https://upload.wikimedia.org/wikipedia/commons/e/e0/Git-logo.svg" alt="Git Bash">
+            <h3>Git Bash</h3>
+            <p>Command-line tool untuk mengelola versi kode menggunakan Git di lingkungan Windows.</p>
+          </div>
+          <!-- GitHub -->
+          <div class="tech-card">
+            <img src="https://cdn.jsdelivr.net/gh/devicons/devicon/icons/github/github-original.svg" alt="GitHub" class="bg-white">
+            <h3>GitHub</h3>
+            <p>Hosting proyek versi Git, kolaborasi tim, dan pengelolaan kode sumber secara online.</p>
+          </div>
+          <!-- Firebase -->
+          <div class="tech-card">
+            <img src="https://cdn.jsdelivr.net/gh/devicons/devicon/icons/firebase/firebase-plain.svg" alt="Firebase">
+            <h3>Firebase</h3>
+            <p>Backend as a Service untuk database real-time, autentikasi, hosting, dan lainnya.</p>
+          </div>
+          <!-- InfinityFree -->
+          <div class="tech-card">
+            <img src="img/infinity.png" alt="InfinityFree" style="height: 48px; object-fit: contain;">
+            <h3>InfinityFree</h3>
+            <p>Layanan hosting gratis yang saya gunakan untuk menyimpan dan menampilkan website ke internet.</p>
+          </div>
+          <!-- GPT -->
+          <div class="tech-card">
+            <img src="https://upload.wikimedia.org/wikipedia/commons/0/04/ChatGPT_logo.svg" alt="GPT / ChatGPT" style="height: 48px;">
+            <h3>GPT / ChatGPT</h3>
+            <p>Model AI dari OpenAI yang saya gunakan untuk membantu penulisan, debugging, dan inspirasi kode.</p>
+          </div>
+        </div>
+        <button class="scroll-btn scroll-right" onclick="scrollRight()">❯</button>
+      </div>
+    </div>
+  </section>
+
+  <!-- kelima -->
+  <section class="kelima" id="kelima">
+    <h2 class="scroll-anim">Serti<span class="biru">fikat</span></h2>
+    <div class="container5 scroll-anim">
+      <div class="card5">
+          <img src="img/sertifikat4.jpeg" alt="Sertifikat 2" onclick="openModal('img/sertifikat4.jpeg')" />
+          <div class="card-text">
+              <h3>20 DESEMBER 2024</h3>
+              <p>-------</p>
+          </div>
+      </div>
+      <div class="card5">
+          <img src="img/sertifikat1.png" alt="Sertifikat 1" onclick="openModal('img/sertifikat1.png')" />
+          <div class="card-text">
+              <h3>11 JUNI 2025</h3>
+              <p>-------</p>
+          </div>
+      </div>
+      <div class="card5">
+          <img src="img/sertifikat5.jpeg" alt="Sertifikat 2" onclick="openModal('img/sertifikat5.jpeg')" />
+          <div class="card-text">
+              <h3>20 JUNI 2025</h3>
+              <p>-------</p>
+          </div>
+      </div>
+      <div class="card5">
+          <img src="img/sertifikat2.jpg" alt="Sertifikat 2" onclick="openModal('img/sertifikat2.jpg')" />
+          <div class="card-text">
+              <h3>24 JUNI 2025</h3>
+              <p>-------</p>
+          </div>
+      </div>
+      <div class="card5">
+          <img src="img/sertifikat3.jpg" alt="Sertifikat 1" onclick="openModal('img/sertifikat3.jpg')" />
+          <div class="card-text">
+              <h3>17 JULI 2025</h3>
+              <p>-------</p>
+          </div>
+      </div>
+      <div class="card5">
+          <img src="img/sertifikat6.jpeg" alt="Sertifikat 2" onclick="openModal('img/sertifikat6.jpeg')" />
+          <div class="card-text">
+              <h3>24 OKTOBER 2025</h3>
+              <p>-------</p>
+          </div>
+      </div>
+      <div class="card5">
+          <img src="img/sertifikat7.png" alt="Sertifikat 2" onclick="openModal('img/sertifikat7.png')" />
+          <div class="card-text">
+              <h3>14 November 2025</h3>
+              <p>-------</p>
+          </div>
+      </div>
+      <div class="card5">
+          <img src="img/sertifikat8.jpg" alt="Sertifikat 2" onclick="openModal('img/sertifikat8.jpg')" />
+          <div class="card-text">
+              <h3>20 November 2025</h3>
+              <p>-------</p>
+          </div>
+      </div>
+      <div class="card5">
+          <img src="img/sertifikat9.jpg" alt="Sertifikat 2" onclick="openModal('img/sertifikat9.jpg')" />
+          <div class="card-text">
+              <h3>21 November 2025</h3>
+              <p>-------</p>
+          </div>
+      </div>
+      <div class="card5">
+          <img src="img/sertifikat10.jpeg" alt="Sertifikat 2" onclick="openModal('img/sertifikat10.jpeg')" />
+          <div class="card-text">
+              <h3>30 November 2025</h3>
+              <p>-------</p>
+          </div>
+      </div>
+      <div class="card5">
+          <img src="img/sertifikat11.png" alt="Sertifikat 2" onclick="openModal('img/sertifikat11.png')" />
+          <div class="card-text">
+              <h3>11 Desember 2025</h3>
+              <p>-------</p>
+          </div>
+      </div>
+      <div class="card5">
+          <img src="img/sertifikat12.jpg" alt="Sertifikat 2" onclick="openModal('img/sertifikat12.jpg')" />
+          <div class="card-text">
+              <h3>25 Januari 2026</h3>
+              <p>-------</p>
+          </div>
+      </div>
+
+      <div id="imageModal" class="modal" onclick="closeModalOnOutsideClick(event)">
+          <span class="close" onclick="closeModal()">&times;</span>
+          <img class="modal-content" id="modalImage" src="">
+      </div>
+    
+    </div>
+  </section>
+  <!-- akhir kelima -->
+          <div id="chatbot-window">
+            <div class="chat-header" id="chat-header">
+              Chat Tentang Saya
+              <button id="close-chat">&times;</button>
+            </div>
+            <div class="quick-replies">
+              <button onclick="sendQuick('Siapa kamu?')">Siapa kamu?</button>
+              <button onclick="sendQuick('tanggal lahir kamu berapa?')">tanggal lahir?</button>
+              <button onclick="sendQuick('Berapa usiamu?')">Usia?</button>
+              <button onclick="sendQuick('Apa hobi kamu?')">Hobi?</button>
+              <button onclick="sendQuick('Berapa lama kamu PKL?')">Berapa bulan PKLnya?</button>
+              <button onclick="sendQuick('Dimana tempat tinggalmu?')">Tempat tinggal?</button>
+              <button onclick="sendQuick('Bahasa pemrograman apa yang sering kamu gunakan?')">Bahasa pemrograman?</button>
+              <button onclick="sendQuick('Kamu bisa bikin website?')">Bisa bikin website?</button>
+              <button onclick="sendQuick('Kamu PKL dimana?')">PKL dimana?</button>
+            </div>
+            <div class="chat-body" id="chat-body">
+              <div class="msg bot">Halo! Tanyakan apapun tentang saya 👋</div>
+            </div>
+            <div class="chat-input">
+              <input type="text" id="user-input" placeholder="Ketik pesan dan tekan Enter..." />
+              <button onclick="sendMessage()">Kirim</button>
+            </div>
+          </div>
+  <!-- keenam -->
+  <section class="keenam">
+    <!-- Awan -->
+    <div class="sky" id="sky"></div>
+
+    <!-- Bulan -->
+    <div class="moon"></div>
+
+
+    <!-- Bintang -->
+    <div class="galaxy" id="galaxy"></div>
+
+    <!-- kabut -->
+  <div class="fog fog1"></div>
+  <div class="fog fog2"></div>
+  <div class="fog fog3"></div>
+
+    <!-- Gradient untuk awan -->
+    <svg width="0" height="0">
+      <defs>
+        <linearGradient id="grad" x1="0" x2="0" y1="0" y2="1">
+          <stop offset="0%" stop-color="#555" />
+          <stop offset="100%" stop-color="#222" />
+        </linearGradient>
+      </defs>
+    </svg>
+    <div class="boat">
+      <img src="img/buoy_bird.png" alt="Boat">
+    </div>
+  </section>
+
+  <!-- akhir keenam -->
+  <!-- footer -->
+   
+
+    <div class="fotr">
+        <div class="wave wave1"></div>
+        <div class="wave wave2"></div>
+        <div class="wave wave3"></div>
+        <div class="wave wave4"></div>
+    </div>
+  <footer>
+      <p>2025 Hilmy</p>
+  </footer>
+
+  <script src="script-bersih.js"></script>
+<script>
+    // ===================================
+    // 1. FUNGSI MENU MOBILE (IIFE)
+    // ===================================
+    (function(){
+        const toggler = document.getElementById('menu-toggler');
+        const links = document.querySelectorAll('.navbar .all-links a');
+        if(!toggler) return;
+        links.forEach(a => a.addEventListener('click', () => {
+            // hanya berfungsi jika checkbox ada dan sedang tercentang
+            if(toggler.checked) toggler.checked = false;
+        }));
+    })();
+
+
+    // ===================================
+    // 2. FUNGSI MODAL GAMBAR
+    // ===================================
+    // Dapatkan elemen modal
+    var modal = document.getElementById("imageModal");
+    var modalImg = document.getElementById("modalImage");
+
+    // Fungsi untuk membuka modal (MENGGANTI display:block menjadi classList.add)
+    function openModal(imageSrc) {
+        // Menambahkan kelas 'show-modal' yang akan mengatur display: flex
+        modal.classList.add('show-modal'); 
+        modalImg.src = imageSrc;
+    }
+
+    // Fungsi untuk menutup modal (MENGGANTI display:none menjadi classList.remove)
+    function closeModal() {
+        // Menghapus kelas 'show-modal', yang secara default kembali ke display: none
+        modal.classList.remove('show-modal');
+    }
+
+    // Fungsi closeModalOnOutsideClick dan keydown tidak perlu diubah.
+    function closeModalOnOutsideClick(event) {
+        if (event.target == modal) {
+            closeModal();
+        }
+    }
+    
+    document.addEventListener('keydown', function(event) {
+        // Cek apakah modal memiliki class 'show-modal'
+        if (event.key === "Escape" && modal.classList.contains('show-modal')) {
+            closeModal();
+        }
+    });
+
+</script>
+</body>
+</html>

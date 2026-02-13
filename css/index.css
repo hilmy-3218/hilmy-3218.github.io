@@ -1,0 +1,1013 @@
+@import url("https://fonts.googleapis.com/css2?family=Poppins:wght@200;300;400;500;600;700&display=swap");
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+  font-family: "Poppins", sans-serif;
+}
+html {
+  scroll-behavior: smooth;
+  overflow-x: hidden;
+}
+body {
+  background: rgba(10, 32, 41, 1);
+  overflow-x: hidden;
+  cursor: none;
+}
+header {
+  position: fixed;
+  top: 0;
+  left: 0;
+  z-index: 100;
+  width: 100%;
+  display: flex;
+  justify-content: center;
+  background-color: rgba(10, 32, 41, 0.6); /* warna utama dengan transparansi */
+  backdrop-filter: blur(15px);
+  -webkit-backdrop-filter: blur(15px);
+  transition: background 0.3s ease, backdrop-filter 0.3s ease;
+  border-bottom: 1px solid rgba(255, 255, 255, 0.05);
+  border-left: 1px solid rgba(14, 103, 103, 0.3);
+  border-right: 1px solid rgba(15, 100, 100, 0.3);
+  box-shadow: inset 0 1px 0 rgba(255, 255, 255, 0.1),
+              inset 0 -1px 0 rgba(255, 255, 255, 0.1);
+}
+
+header.scrolled {
+  background: rgba(10, 32, 41, 0.6);
+}
+
+
+.navbar {
+  display: flex;
+  padding: 0 10px;
+  max-width: 1200px;
+  width: 100%;
+  align-items: center;
+  justify-content: space-between;
+}
+.navbar .all-links { /* allow wrapping and small gap on wide screens so links don't overflow */
+  gap: 12px;
+  flex-wrap: wrap;
+}
+.navbar input#menu-toggler {
+  display: none;
+}
+.navbar #hamburger-btn {
+  cursor: none;
+  display: none;
+}
+.navbar .all-links {
+  display: flex;
+  align-items: center;
+}
+.navbar .all-links li {
+  position: relative;
+  list-style: none;
+}
+.navbar .all-links li a {
+  cursor: none;
+}
+.navbar .logo a {
+  display: flex;
+  align-items: center;
+  margin-left: 0;
+  cursor: none;
+}
+header a, footer a {
+  margin-left: 40px;
+  text-decoration: none;
+  color: #fff;
+  height: 100%;
+  padding: 20px 0;
+  display: inline-block;
+}
+header a:hover, footer a:hover {
+  color: #ddd;
+}
+/* Media query untuk layar sedang (tablet landscape atau desktop kecil) */
+@media screen and (max-width: 1200px) and (min-width: 861px) {
+  .navbar .all-links {
+    gap: 8px; /* kurangi gap agar lebih banyak link fit */
+    flex-wrap: wrap; /* pastikan wrap */
+  }
+  .navbar .all-links li a {
+    font-size: 14px; /* kurangi font-size jika perlu */
+    padding: 15px 0; /* adjust padding */
+  }
+}
+
+@media screen and (max-width: 860px) {
+    .navbar .all-links {
+      position: fixed;
+      left: -100%;
+      width: 250px; /* tingkatkan dari 230px untuk lebih luas di mobile */
+      display: block;
+      height: 100vh;
+      top: calc(100%); /* let it start right below the header */
+      background: rgba(10, 32, 41, 0.95);
+      transition: left 0.28s ease, opacity 0.28s ease;
+      z-index: 998;
+    }
+
+    .navbar #menu-toggler:checked~.all-links {
+      left: 0;
+    }
+
+    .navbar .all-links li {
+      font-size: 16px; /* kurangi dari 18px untuk fit lebih baik */
+    }
+
+    .navbar #hamburger-btn {
+      display: block;
+      position: relative;
+      z-index: 999; /* make sure the hamburger is above other elements */
+    }
+}
+/* Section pertama */
+/* star-bg */
+    .star-section {
+      position: relative;
+      height: 100vh;
+      overflow: hidden;
+      background:rgba(10, 32, 41, 1);
+    }
+    canvas {
+      display:block;
+      width:100%;
+      height:95%;
+      position:absolute;
+      inset:0;
+      z-index:0;
+      pointer-events:none;
+    }
+section{ 
+  height: 100vh;
+}
+.biru {
+  color:#00bcd4;
+}
+.pertama {
+  position: relative;
+  height: auto;
+  min-height: 100vh;
+  color: #fff;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  padding: 2rem;
+  background: 
+    url(../img/bg-dot.webp) 10px 10px no-repeat,
+    url(../img/bg-dot.webp) bottom 120px left 404px no-repeat,
+    url(../img/bg-tree.webp) bottom 215px right 47px no-repeat,
+    url(../img/bg-round.webp) left 55% top -1% no-repeat,
+    linear-gradient(0deg,rgba(10, 32, 41, 1) 5%, rgba(0, 0, 0, 1) 20%);
+}
+.bungkus {
+  display: flex;
+  align-items: center;
+  justify-content: space-evenly;
+  flex-wrap: wrap;
+  max-width: 1200px;
+  width: 100%;
+  gap: 2rem;
+}
+
+.hero-content {
+  max-width: 800px;
+  padding-right: 1em;
+  text-align: start;
+}
+
+/* akhir typing */
+
+
+
+.hero-content h3 {
+  font-size: 23px;
+  color: #fff;
+  margin-bottom: 10px;
+  animation: fadeInUp 1s ease-out forwards;
+}
+
+.hero-content h1 {
+  font-size: 39px;
+  font-weight: 700;
+  margin-bottom: 15px;
+  color: #fff;
+  animation: fadeInUp 1s ease-out forwards;
+}
+
+.hero-content p {
+  font-size: 17px;
+  color: #fff;
+  margin-bottom: 30px;
+  animation: fadeInUp 1s ease-out forwards;
+}
+
+.hero-image {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  overflow: hidden;
+  box-shadow: 0 10px 30px rgba(0, 0, 0, 0.1);
+}
+
+/* Button */
+.btn_tentang {
+  animation: fadeInUp 1s ease-out forwards;
+  -moz-appearance: none;
+  -webkit-appearance: none;
+  appearance: none;
+  border: none;
+  background: none;
+  color: #0f1923;
+  cursor: none;
+  position: relative;
+  padding: 8px;
+  margin-bottom: 20px;
+  text-transform: uppercase;
+  font-weight: bold;
+  font-size: 14px;
+  transition: all .15s ease;
+}
+
+.btn_tentang::before,
+.btn_tentang::after {
+  content: '';
+  display: block;
+  position: absolute;
+  right: 0;
+  left: 0;
+  height: calc(50% - 5px);
+  border: 1px solid #7D8082;
+  transition: all .15s ease;
+}
+
+.btn_tentang::before {
+  top: 0;
+  border-bottom-width: 0;
+}
+
+.btn_tentang::after {
+  bottom: 0;
+  border-top-width: 0;
+}
+
+.btn_tentang:active,
+.btn_tentang:focus {
+  outline: none;
+}
+
+.btn_tentang:active::before,
+.btn_tentang:active::after {
+  right: 3px;
+  left: 3px;
+}
+
+.btn_tentang:active::before {
+  top: 3px;
+}
+
+.btn_tentang:active::after {
+  bottom: 3px;
+}
+
+.button_lg {
+  position: relative;
+  display: block;
+  padding: 10px 20px;
+  color: #fff;
+  background-color: #0f1923;
+  overflow: hidden;
+  box-shadow: inset 0px 0px 0px 1px transparent;
+  cursor: none;
+}
+
+.button_lg::before {
+  content: '';
+  display: block;
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 2px;
+  height: 2px;
+  background-color: #0f1923;
+  cursor: none;
+}
+
+.button_lg::after {
+  content: '';
+  display: block;
+  position: absolute;
+  right: 0;
+  bottom: 0;
+  width: 4px;
+  height: 4px;
+  background-color: #0f1923;
+  transition: all .2s ease;
+  cursor: none;
+}
+
+.button_sl {
+  display: block;
+  position: absolute;
+  top: 0;
+  bottom: -1px;
+  left: -8px;
+  width: 0;
+  background-color: #00bcd4;
+  transform: skew(-15deg);
+  transition: all .2s ease;
+}
+.button_lg .button_text a{
+  color: #fff;
+  text-decoration: none;
+  cursor: none;
+}
+
+.button_text {
+  position: relative;
+  cursor: none;
+}
+
+.btn_tentang:hover {
+  color: #0f1923;
+}
+
+.btn_tentang:hover .button_sl {
+  width: calc(100% + 15px);
+}
+
+.btn_tentang:hover .button_lg::after {
+  background-color: #fff;
+}
+
+/* robot */
+
+
+.scene {
+  width: 300px;
+  height: 400px;
+  transform-style: preserve-3d;
+  position: relative;
+  margin-left: auto; /* Pindah ke kanan */
+  margin-right: 20px; /* Tambahan spasi kanan */
+    padding-top: 2em;
+}
+
+.robot {
+  transform-style: preserve-3d;
+  position: relative;
+  transform: translateZ(0);
+  cursor: none;
+  z-index: 6;
+  animation: robotSmooth 1.8s ease-out forwards, idleBounce 3s ease-in-out infinite;
+  animation-delay: 0s, 1.8s; /* animasi bounce mulai setelah masuk */
+}
+
+.robot::after {
+  content: "";
+  position: absolute;
+  bottom: -30px;
+  left: 50%;
+  transform: translateX(-50%);
+  width: 20px;
+  height: 60px;
+  border-radius: 50% 50% 60% 60%;
+  opacity: 0;
+}
+
+@keyframes robotSmooth {
+  0% {
+    transform: translateX(80%) scale(0.95);
+    opacity: 0;
+  }
+  25% {
+    opacity: 0.7;
+    transform: translateX(40%) scale(0.98);
+  }
+  50% {
+    opacity: 1;
+    transform: translateX(15%) scale(1);
+  }
+  75% {
+    transform: translateX(5%) scale(1);
+  }
+  100% {
+    transform: translateX(0) scale(1);
+    opacity: 1;
+  }
+}
+
+@keyframes idleBounce {
+  0%, 100% {
+    transform: translateY(0) rotate(0);
+  }
+  50% {
+    transform: translateY(-3px) rotate(0.5deg);
+  }
+}
+
+
+    .cube {
+      width: 100px;
+      height: 100px;
+      position: relative;
+      transform-style: preserve-3d;
+      transform: rotateX(0deg) rotateY(0deg);
+      transition: transform 0.1s ease-out;
+      margin: auto;
+    }
+
+.face {
+  position: absolute;
+  width: 100px;
+  height: 100px;
+  background: linear-gradient(145deg, #000000, #1a1a1a);
+  border: 3px solid #00aaff;
+  border-radius: 20px;
+  opacity: 0.95;
+  box-shadow: inset 0 0 10px #00aaff44, 0 0 12px #00f0ff33;
+}
+
+
+    .front  { transform: translateZ(50px); display: flex; justify-content: center; align-items: center; }
+    .back   { transform: rotateY(180deg) translateZ(50px); }
+    .right  { transform: rotateY(90deg) translateZ(50px); }
+    .left   { transform: rotateY(-90deg) translateZ(50px); }
+    .top    { transform: rotateX(90deg) translateZ(50px); }
+    .bottom { transform: rotateX(-90deg) translateZ(50px); }
+
+    .eyes {
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      gap: 10px;
+    }
+
+    .eye-line {
+      width: 20px;
+      height: 13px;
+      background: #00f0ff;
+      border-radius: 4px;
+      margin: 2px 0;
+      transition: height 0.2s ease;
+    }
+
+    .eye-line.blink {
+      height: 3px;
+      background: #00aaff;
+      box-shadow: 0 0 6px #00aaff;
+    }
+
+    .eye-container {
+      display: flex;
+      justify-content: space-between;
+      width: 60px;
+    }
+
+    .smile {
+      display: flex;
+      flex-direction: column;
+    }
+
+    .smile-line {
+      width: 50px;
+      height: 6px;
+      background: #00f0ff;
+      border-radius: 3px;
+      transition: all 0.3s ease;
+    }
+
+    /* Mulut menguap */
+    .smile-line.yawn {
+      width: 40px;
+      height: 20px;
+      background: #00ffff;
+      border-radius: 50% / 80%;
+      box-shadow: 0 0 12px #00ffff;
+      transition: all 0.5s ease;
+    }
+
+    /* Mulut berbicara saat hover */
+    .smile-line.talk {
+      width: 40px;
+      height: 12px;
+      background: #00ffff;
+      border-radius: 10px / 50%;
+      box-shadow: 0 0 8px #00ffff;
+      animation: talk-move 0.4s ease-in-out infinite alternate;
+    }
+
+    @keyframes talk-move {
+      0% {
+        height: 12px;
+        transform: scaleY(1);
+      }
+      50% {
+        height: 15px;
+        transform: scaleY(1.2);
+      }
+      100% {
+        width: 30px;
+        height: 12px;
+        border-radius: 100%;
+        transform: scaleY(1.5);
+      }
+    }
+
+    /* Body sekarang warna dan border sama seperti kepala */
+.body {
+  width: 120px;
+  height: 160px;
+  background: linear-gradient(145deg, #000000, #1a1a1a);
+  border: 3px solid #00aaff;
+  border-radius: 20px;
+  margin: 20px auto 0;
+  box-shadow: inset 0 0 10px #00aaff55, 0 10px 20px rgba(0, 170, 255, 0.6);
+  position: relative;
+  transform-style: preserve-3d;
+  transition: transform 0.1s ease-out;
+
+  animation: idle-breath 3s ease-in-out infinite;
+}
+@keyframes idle-breath {
+  0%, 100% {
+    transform: translateY(0);
+  }
+  50% {
+    transform: translateY(3px);
+  }
+}
+.arm {
+  width: 24px;
+  height: 80px;
+  background: linear-gradient(145deg, #000000, #1a1a1a);
+  border: 3px solid #00aaff;
+  border-radius: 12px;
+  position: absolute;
+  top: 20px;
+  transform-style: preserve-3d;
+  box-shadow: 0 0 12px #00aaffaa;
+  display: flex;
+  justify-content: center;
+  align-items: flex-end;
+}
+
+.arm.left { left: -50px; transform-origin: top center; }
+.arm.right { right: -50px; transform-origin: top center; }
+
+/* sendi bulat di tengah lengan */
+.arm::before {
+  content: "";
+  position: absolute;
+  top: 35%;
+  left: 50%;
+  transform: translateX(-50%);
+  width: 26px;
+  height: 26px;
+  background: #00aaff;
+  border-radius: 50%;
+  box-shadow: 0 0 10px #00f0ff, inset 0 0 6px #003344;
+}
+
+/* cakar mekanik */
+.hand {
+  position: relative;
+  width: 40px;
+  height: 40px;
+  background: transparent;
+  border-radius: 50%;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+/* jari-jari cakar */
+.hand::before, .hand::after, .hand span {
+  content: "";
+  position: absolute;
+  width: 10px;
+  height: 20px;
+  background: #00f0ff;
+  border-radius: 3px;
+  box-shadow: 0 0 8px #00f0ff;
+  transform-origin: top center;
+}
+
+/* jari kiri */
+.hand::before {
+  transform: rotate(-30deg) translateY(5px);
+  left: 5px;
+}
+/* jari kanan */
+.hand::after {
+  transform: rotate(30deg) translateY(5px);
+  right: 5px;
+}
+/* jari tengah */
+.hand span {
+  top: 0;
+  transform: translateY(5px);
+}
+
+
+    /* Teks sapaan */
+    .greeting {
+      position: absolute;
+      top: -40px;
+      width: 100%;
+      text-align: center;
+      font-size: 1.2rem;
+      font-weight: bold;
+      color: #00f0ff;
+      opacity: 0;
+      transition: opacity 0.3s ease;
+      user-select: none;
+      pointer-events: none;
+      text-shadow: 0 0 8px #00f0ff;
+    }
+    /* new update robot */
+/* Partikel cahaya */
+.particles {
+  position: absolute;
+  bottom: 35px;
+  left: 50%;
+  transform: translateX(-50%);
+  width: 200px;
+  height: 120px;
+  pointer-events: none;
+  overflow: visible;
+}
+
+.particles span {
+  position: absolute;
+  bottom: 0;
+  width: 6px;
+  height: 6px;
+  background: #00f0ff;
+  border-radius: 50%;
+  box-shadow: 0 0 8px #00f0ff, 0 0 15px #00aaff;
+  animation: float-up 3s linear infinite;
+}
+
+/* Random posisi partikel */
+.particles span:nth-child(1) { left: 20%; animation-delay: 0s; }
+.particles span:nth-child(2) { left: 40%; animation-delay: 0.8s; }
+.particles span:nth-child(3) { left: 60%; animation-delay: 1.2s; }
+.particles span:nth-child(4) { left: 80%; animation-delay: 1.7s; }
+.particles span:nth-child(5) { left: 50%; animation-delay: 2.2s; }
+
+@keyframes float-up {
+  0% { transform: translateY(0) scale(1); opacity: 1; }
+  50% { transform: translateY(-50px) scale(1.2); opacity: 0.8; }
+  100% { transform: translateY(-100px) scale(0.6); opacity: 0; }
+}
+
+.stage {
+  position: absolute;
+  bottom: 30px;
+  left: 50%;
+  transform: translateX(-50%) scale(1);
+  width: 180px;
+  height: 30px;
+  background: radial-gradient(circle at center, #00f0ffcc 0%, #00778822 70%, transparent 100%);
+  border-radius: 50%;
+  animation: intro-glow 1s ease-out forwards, stage-glow 2.5s ease-in-out 1s infinite alternate;
+}
+
+/* intro: mengecil → besar → normal + glow awal */
+@keyframes intro-glow {
+  0% {
+    transform: translateX(-50%) scale(0.2);
+    opacity: 0;
+    box-shadow: 0 0 0px transparent;
+  }
+  50% {
+    transform: translateX(-50%) scale(1.3);
+    opacity: 1;
+    box-shadow: 0 0 30px #00f0ff, 0 0 60px #00aaff;
+  }
+  100% {
+    transform: translateX(-50%) scale(1);
+    opacity: 1;
+    box-shadow: 0 0 20px #00f0ff, 0 0 50px #00aaff;
+  }
+}
+
+/* animasi glow berulang */
+@keyframes stage-glow {
+  0% {
+    transform: translateX(-50%) scale(1);
+    box-shadow: 0 0 20px #00f0ff, 0 0 50px #00aaff;
+  }
+  100% {
+    transform: translateX(-50%) scale(1.1);
+    box-shadow: 0 0 40px #00f0ff, 0 0 80px #00aaff;
+  }
+}
+
+/* Responsive adjustments */
+@media (max-width: 992px) {
+  .cube, .face {
+    width: 90px;
+    height: 90px;
+  }
+  
+  .front { transform: translateZ(45px); }
+  .back { transform: rotateY(180deg) translateZ(45px); }
+  .right { transform: rotateY(90deg) translateZ(45px); }
+  .left { transform: rotateY(-90deg) translateZ(45px); }
+  .top { transform: rotateX(90deg) translateZ(45px); }
+  .bottom { transform: rotateX(-90deg) translateZ(45px); }
+  
+  .body {
+    width: 110px;
+    height: 150px;
+  }
+  
+  .arm {
+    height: 75px;
+  }
+  
+  .hand {
+    margin-top: 55px;
+  }
+}
+
+@media (max-width: 768px) {
+  .robot{
+    display: none;
+  }
+}
+
+/* akhir robot */
+/* Responsive */
+@media (max-width: 768px) {
+  .particles{
+    display: none;
+  }
+  .bungkus {
+    flex-direction: column;
+    text-align: center;
+  }
+
+  .nama p:first-child {
+    font-size: 2.2rem;
+  }
+
+  .nama p:last-child {
+    font-size: 1.1rem;
+  }
+}
+@media (max-width: 768px) {
+  .pertama {
+    padding: 1.5rem 1rem;
+  }
+  .bungkus{
+    height: 80vh;
+  }
+  #stars{
+    display: none;
+  }
+  .stage {
+    display: none;
+  }
+  .hero-content {
+    max-width: 100%;
+    padding: 1em 0.5em;
+    padding-top: 6em;
+  }
+
+}
+
+@media (max-width: 480px) {
+  .hero-content h1 {
+    font-size: 26px;
+  }
+  .hero-content .logo_pro img {
+    height: 13px;
+    width: auto;
+  }
+
+  .hero-content h3 {
+    font-size: 16px;
+  }
+
+  .hero-content p {
+    font-size: 14px;
+  }
+
+}
+
+
+/* kedua */
+.kedua {
+  background: rgba(10, 32, 41, 1);
+}
+.kedua .tentang {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  height: 100vh;
+}
+.kedua .tentang_conta {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  justify-content: space-between;
+  gap: 20px;
+  width: 90%;
+  max-width: 900px;
+  margin: 50px auto;
+  padding: 30px;
+  border-radius: 20px;
+  background: rgba(255, 255, 255, 0.1);
+  backdrop-filter: blur(20px);
+  -webkit-backdrop-filter: blur(20px);
+  box-shadow: 0 8px 32px rgba(0, 0, 0, 0.25);
+  border: 1px solid rgba(255, 255, 255, 0.2);
+  color: #fff;
+  font-family: 'Segoe UI', sans-serif;
+}
+.tentang_conta .ten_gam {
+  flex: 1 1 300px;
+  max-width: 300px;
+}
+
+.tentang_conta .ten_gam img {
+  width: 100%;
+  border-radius: 15px;
+  object-fit: cover;
+}
+
+.tentang_conta .ten_teks {
+  flex: 2 1 400px;
+}
+
+.tentang_conta h2 {
+  margin-bottom: 10px;
+}
+
+.tentang_conta p {
+  line-height: 1.6;
+}
+/* sosial media */
+.ten_teks .icons {
+  padding-top: 20px;
+}
+.icons a{
+  background: transparent;
+  position: relative;
+  height: 50px;
+  width: 50px;
+  margin: 0 10px;
+  display: inline-flex;
+  text-decoration: none;
+  border-radius: 50%;
+  transition: all 0.3s;
+  border: 2px solid;
+  border-color: #00bcd4;
+  cursor: none;
+}
+.icons a:hover:before{
+  content: "";
+  position: absolute;
+  top: 0;
+  left: 0;
+  bottom: 0;
+  right: 0;
+  border-radius: 50%;
+  background: transparent;
+  box-shadow: 1px 5px 15px #00bcd4;
+}
+.icons a i{
+  position: relative;
+  z-index: 3;
+  text-align: center;
+  width: 100%;
+  height: 100%;
+  font-size: 25px;
+  line-height: 50px;
+  color: #00bcd4;
+}
+.icons a i:hover {
+  color: #00fff2;
+}
+.scroll-anim {
+  opacity: 0;
+  transform: translateY(50px);
+  transition: opacity 0.8s ease, transform 0.8s ease;
+}
+
+.scroll-anim.show {
+  opacity: 1;
+  transform: translateY(0);
+}
+
+/* Responsif */
+/* Responsif */
+@media (max-width: 768px) {
+  .tentang_conta {
+    flex-direction: column;
+    align-items: center;
+    text-align: center;
+    width: 95%;
+    padding: 20px;
+    gap: 10px; /* dari 25px jadi lebih rapat */
+    height: auto;
+  }
+
+  .tentang_conta .ten_gam {
+    max-width: 200px;
+    margin-bottom: 10px; /* tambahkan sedikit jarak halus */
+  }
+
+  .tentang_conta .ten_gam img {
+    border-radius: 50%;
+    width: 180px;
+    height: 180px;
+    object-fit: cover;
+  }
+
+  .tentang_conta .ten_teks {
+    flex: none;
+    max-width: 100%;
+    margin-top: 0; /* hilangkan jarak atas */
+  }
+
+  .tentang_conta h2 {
+    font-size: 1.8rem;
+    margin-bottom: 8px;
+    margin-top: -4em;
+  }
+
+  .tentang_conta p {
+    font-size: 0.95rem;
+    line-height: 1.5;
+    margin-top: 0; /* biar rapat ke judul */
+  }
+
+  .icons {
+    display: flex;
+    justify-content: center;
+    flex-wrap: wrap;
+    gap: 12px;
+    padding-top: 10px;
+  }
+
+  .icons a {
+    height: 45px;
+    width: 45px;
+    margin: 0;
+  }
+
+  .icons a i {
+    font-size: 22px;
+    line-height: 45px;
+  }
+
+  #chatbot-btn {
+    margin-top: 10px;
+    padding: 8px 16px;
+    font-size: 0.9rem;
+    border-radius: 10px;
+    border: none;
+    background: #00bcd4;
+    color: white;
+    cursor: pointer;
+    transition: 0.3s;
+  }
+
+  #chatbot-btn:hover {
+    background: #00fff2;
+    color: #0a2029;
+  }
+
+  .icons .game_com {
+    display: none;
+  }
+}
+
+/* Tambahan untuk layar kecil */
+@media (max-width: 480px) {
+  .tentang_conta p {
+    font-size: 0.9rem;
+  }
+
+  .icons a {
+    height: 40px;
+    width: 40px;
+  }
+
+  .icons a i {
+    font-size: 20px;
+    line-height: 40px;
+  }
+
+  #chatbot-btn {
+    font-size: 0.85rem;
+    padding: 6px 14px;
+  }
+}

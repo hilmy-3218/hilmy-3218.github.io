@@ -1,0 +1,120 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+<meta charset="UTF-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1" />
+<title>Dashboard Pilih Permainan</title>
+<style>
+  body {
+    font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+    background: #1e1e2f;
+    color: #f0f0f0;
+    margin: 0;
+    min-height: 100vh;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    padding: 2rem;
+    position: relative;
+  }
+  h1 {
+    margin-bottom: 2rem;
+    color: #4fc3f7;
+    text-shadow: 0 0 10px #4fc3f7;
+  }
+  .back-btn {
+    position: absolute;
+    top: 1rem;
+    left: 1rem;
+    background: #2a2a40;
+    color: #4fc3f7;
+    border: none;
+    padding: 0.6rem 1rem;
+    font-size: 1rem;
+    border-radius: 6px;
+    cursor: pointer;
+    box-shadow: 0 0 8px #444466;
+    transition: background 0.3s ease, transform 0.2s ease;
+  }
+  .back-btn:hover {
+    background: #3a3a55;
+    transform: translateY(-2px);
+  }
+  .game-list {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(180px, 1fr));
+    gap: 1.5rem;
+    width: 100%;
+    max-width: 800px;
+  }
+  .game-card {
+    background: #2a2a40;
+    border-radius: 10px;
+    padding: 1.5rem;
+    cursor: pointer;
+    text-align: center;
+    box-shadow: 0 0 10px #444466;
+    transition: transform 0.2s ease, box-shadow 0.3s ease;
+  }
+  .game-card:hover {
+    transform: translateY(-5px);
+    box-shadow: 0 8px 20px #4fc3f7aa;
+  }
+  .game-icon {
+    font-size: 3rem;
+    margin-bottom: 1rem;
+  }
+  .game-title {
+    font-size: 1.2rem;
+    font-weight: 600;
+  }
+  #message {
+    margin-top: 2rem;
+    font-size: 1.1rem;
+    color: #80d8ff;
+  }
+</style>
+</head>
+<body>
+
+<!-- Tombol kembali -->
+<button class="back-btn" onclick="window.location.href='../index.html'">⬅ Kembali</button>
+
+<h1>Pilih Permainan</h1>
+<div class="game-list">
+  <div class="game-card" data-game="Monopoli">
+    <div class="game-icon">🎲</div>
+    <div class="game-title">Monopoli mini</div>
+  </div>
+  <div class="game-card" data-game="tic-tac-tue">
+    <div class="game-icon">❌⭕❌</div>
+    <div class="game-title">Tic tac tue</div>
+  </div>
+  <div class="game-card" data-game="python">
+    <div class="game-icon">🐍💻</div>
+    <div class="game-title">Belajar Python</div>
+  </div>
+</div>
+
+<div id="message"></div>
+
+<script>
+  const gameLinks = {
+    "Monopoli": "monopoli-mini.html",
+    "tic-tac-tue": "tic-tac-tue.html",
+    "python": "py.html"
+  };
+
+  document.querySelectorAll(".game-card").forEach(card => {
+    card.addEventListener("click", () => {
+      const gameName = card.getAttribute("data-game");
+      const targetUrl = gameLinks[gameName];
+      if (targetUrl) {
+        window.location.href = targetUrl;
+      }
+    });
+  });
+</script>
+
+</body>
+</html>

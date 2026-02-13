@@ -1,0 +1,284 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/11.9.0/styles/atom-one-dark.min.css">
+<title>Belajar Python</title>
+<style>
+    body {
+        font-family: Arial, sans-serif;
+        background: linear-gradient(135deg, #0b1220, #1e293b);
+        color: white;
+        margin: 0;
+        padding: 0;
+    }
+
+    header {
+        background: rgba(30, 41, 59, 0.8);
+        backdrop-filter: blur(10px);
+        padding: 20px;
+        text-align: center;
+        font-size: 26px;
+        font-weight: bold;
+        letter-spacing: 1px;
+        border-bottom: 2px solid rgba(255, 255, 255, 0.05);
+        box-shadow: 0 2px 8px rgba(0,0,0,0.3);
+    }
+
+    .dashboard {
+        display: flex;
+        flex-wrap: wrap;
+        justify-content: center;
+        padding: 40px 20px;
+        gap: 20px;
+    }
+
+    .card {
+        background: rgba(30, 41, 59, 0.6);
+        backdrop-filter: blur(12px);
+        border: 1px solid rgba(255, 255, 255, 0.05);
+        border-radius: 15px;
+        padding: 25px 20px;
+        width: 220px;
+        text-align: center;
+        cursor: pointer;
+        transition: transform 0.3s ease, background 0.3s ease, box-shadow 0.3s ease;
+        box-shadow: 0 8px 20px rgba(0, 0, 0, 0.25);
+        font-size: 18px;
+        font-weight: 500;
+        position: relative;
+        overflow: hidden;
+    }
+
+    /* Efek cahaya saat hover */
+    .card::before {
+        content: "";
+        position: absolute;
+        top: -50%;
+        left: -50%;
+        width: 200%;
+        height: 200%;
+        background: radial-gradient(circle, rgba(37, 99, 235, 0.25), transparent 70%);
+        transform: scale(0);
+        transition: transform 0.4s ease;
+    }
+
+    .card:hover::before {
+        transform: scale(1);
+    }
+
+    .card:hover {
+        background: rgba(37, 99, 235, 0.8);
+        transform: translateY(-8px) scale(1.05);
+        box-shadow: 0 15px 30px rgba(37, 99, 235, 0.4);
+    }
+    #materi-container {display: none;padding: 20px;max-width: 900px;margin: auto;}
+    select {background: #1e293b;color: white;border: none;padding: 10px;border-radius: 6px;margin-bottom: 15px;}
+    pre {background: #111827;padding: 10px;border-radius: 6px;overflow-x: auto;font-size: 14px;}
+    #editor-container {display: flex;background: #0f172a;border-radius: 6px;overflow: hidden;}
+    #user-code {flex: 1;min-height: 150px;background: #0f172a;color: white;border: none;padding: 10px;font-family: monospace;resize: none;line-height: 1.5;outline: none;overflow-y: hidden;}
+    button {background: #2563eb;color: white;padding: 10px 15px;border: none;border-radius: 6px;cursor: pointer;margin-top: 10px;transition: 0.3s;}
+    button:hover {background: #1d4ed8;}
+    #terminal {background: black;color: #00ff00;padding: 10px;border-radius: 6px;margin-top: 15px;height: 200px;overflow-y: auto;font-family: monospace;white-space: pre-wrap;}
+    .error {color: red;}
+</style>
+</head>
+<body>
+
+<header>Belajar Python</header>
+
+<div class="dashboard" id="dashboard">
+    <div class="card" onclick="loadMateri('Dasar')">Dasar</div>
+    <div class="card" onclick="loadMateri('Variable')">Variable</div>
+    <div class="card" onclick="loadMateri('Perkondisian')">Perkondisian</div>
+    <div class="card" onclick="loadMateri('Operator')">Operator</div>
+    <div class="card" onclick="loadMateri('Perulangan')">Perulangan</div>
+</div>
+
+<div id="materi-container">
+    <h2 id="materi-title"></h2>
+    <label>Pilih Contoh:</label>
+    <select id="contoh-select" onchange="gantiContoh()"></select>
+
+    <p>Contoh Code:</p>
+    <pre><code id="materi-code" class="language-python"></code></pre>
+
+    <p>Coba Ketik Ulang di Sini:</p>
+    <div id="editor-container">
+        <textarea id="user-code"></textarea>
+    </div>
+    <button onclick="runCode()">Run Code</button>
+    <button onclick="backDashboard()">Kembali ke Dashboard</button>
+
+    <div id="terminal"></div>
+</div>
+
+<script src="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/11.9.0/highlight.min.js"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/11.9.0/languages/python.min.js"></script>
+<script src="https://cdn.jsdelivr.net/pyodide/v0.23.4/full/pyodide.js"></script>
+<script>
+let pyodideReady = false;
+let currentMateri = "";
+let contohIndex = 0;
+
+const materiList = {
+    "Dasar": [
+        `print("Halo Dunia")`,
+        `# Komentar tidak dieksekusi Python\nprint("Ini komentar di atas")`,
+        `print("Python itu", "Keren!", sep=" 🚀 ")`,
+        `print("*" * 20)\nprint("Selamat Belajar Python")\nprint("*" * 20)`,
+        `nama = input("Masukkan nama: ")\nprint(f"Halo {nama}, selamat datang di Python!")`
+    ],
+    "Variable": [
+        `nama = "Zaki"\numur = 18\nprint("Nama:", nama)\nprint("Umur:", umur)`,
+        `x = 10\ny = 3.5\nz = "Python"\nprint(x, y, z)`,
+        `nama_depan = "Muhammad"\nnama_belakang = "Hilmiy"\nfull = nama_depan + " " + nama_belakang\nprint(full)`,
+        `a, b, c = 5, 7, 9\nprint(f"Nilai a={a}, b={b}, c={c}")`,
+        `saldo = 1000000\nprint(f"Saldo Awal: Rp{saldo:,}")\nsaldo += 250000\nprint(f"Saldo Setelah Ditambah: Rp{saldo:,}")`
+    ],
+    "Perkondisian": [
+        `nilai = 75\nif nilai >= 70:\n    print("Lulus")\nelse:\n    print("Tidak Lulus")`,
+        `umur = 18\nif umur >= 18:\n    print("Dewasa")\nelse:\n    print("Anak-anak")`,
+        `angka = 0\nif angka > 0:\n    print("Positif")\nelif angka < 0:\n    print("Negatif")\nelse:\n    print("Nol")`,
+        `username = "admin"\npassword = "1234"\nif username == "admin" and password == "1234":\n    print("Login berhasil!")\nelse:\n    print("Login gagal!")`,
+        `warna = "merah"\nif warna in ["merah", "biru", "hijau"]:\n    print("Warna tersedia")\nelse:\n    print("Warna tidak tersedia")`
+    ],
+    "Operator": [
+        `a = 10\nb = 5\nprint("Penjumlahan:", a + b)\nprint("Perkalian:", a * b)`,
+        `x = 7\ny = 2\nprint("Pembagian:", x / y)\nprint("Modulus:", x % y)`,
+        `x = 5\ny = 3\nprint("Pangkat:", x ** y)`,
+        `a = 15\nprint("Sebelum:", a)\na += 5\nprint("Sesudah ditambah 5:", a)`,
+        `panjang = 10\nlebar = 4\nluas = panjang * lebar\nprint(f"Luas Persegi Panjang = {luas} m²")`
+    ],
+    "Perulangan": [
+        `for i in range(5):\n    print("Perulangan ke-", i)`,
+        `buah = ["apel", "jeruk", "mangga"]\nfor b in buah:\n    print(b)`,
+        `angka = 1\nwhile angka <= 5:\n    print(angka)\n    angka += 1`,
+        `for i in range(1, 6):\n    print("*" * i)`,
+        `while True:\n    teks = input("Ketik 'stop' untuk berhenti: ")\n    if teks.lower() == 'stop':\n        break`
+    ]
+
+};
+
+// Load Pyodide
+async function loadPyodideEnv() {
+    window.pyodide = await loadPyodide();
+    pyodideReady = true;
+}
+loadPyodideEnv();
+
+function loadMateri(materi) {
+    currentMateri = materi;
+    document.getElementById("dashboard").style.display = "none";
+    document.getElementById("materi-container").style.display = "block";
+    document.getElementById("materi-title").innerText = materi;
+
+    let select = document.getElementById("contoh-select");
+    select.innerHTML = "";
+    materiList[materi].forEach((c, i) => {
+        let opt = document.createElement("option");
+        opt.value = i;
+        opt.textContent = "Contoh " + (i + 1);
+        select.appendChild(opt);
+    });
+
+    contohIndex = 0;
+    tampilkanContoh();
+}
+
+function tampilkanContoh() {
+    const codeEl = document.getElementById("materi-code");
+    codeEl.textContent = materiList[currentMateri][contohIndex];
+    hljs.highlightElement(codeEl);
+    document.getElementById("user-code").value = "";
+    document.getElementById("terminal").innerText = "";
+}
+
+function gantiContoh() {
+    contohIndex = parseInt(document.getElementById("contoh-select").value);
+    tampilkanContoh();
+}
+
+function backDashboard() {
+    document.getElementById("dashboard").style.display = "flex";
+    document.getElementById("materi-container").style.display = "none";
+}
+
+async function runCode() {
+    if (!pyodideReady) {
+        document.getElementById("terminal").innerText = "Python belum siap, tunggu sebentar...";
+        return;
+    }
+
+    const code = document.getElementById("user-code").value;
+    document.getElementById("terminal").innerHTML = "";
+
+    try {
+        pyodide.globals.set("input", (promptText) => {
+            return prompt(promptText || "Masukkan input:");
+        });
+
+        let output = await pyodide.runPythonAsync(`
+import sys, io, traceback
+sys.stdout = io.StringIO()
+sys.stderr = io.StringIO()
+try:
+    exec("""${code.replace(/\\/g, "\\\\").replace(/`/g, "\\`").replace(/\$/g, "\\$").replace(/\n/g, "\\n")}""")
+except Exception:
+    err_type, err_value, err_tb = sys.exc_info()
+    tb_list = traceback.format_exception(err_type, err_value, err_tb)
+    sys.stderr.write("".join(tb_list))
+stdout_value = sys.stdout.getvalue()
+stderr_value = sys.stderr.getvalue()
+stdout_value + ("\\nError: " + stderr_value if stderr_value else "")
+        `);
+
+        if (output.includes("Error:")) {
+            document.getElementById("terminal").innerHTML = `<span class='error'>${output}</span>`;
+        } else {
+            document.getElementById("terminal").textContent = output || "Kode berjalan tanpa output.";
+        }
+
+    } catch (err) {
+        document.getElementById("terminal").innerHTML = `<span class='error'>Error: ${err}</span>`;
+    }
+}
+
+// Perbaikan inputan & auto resize
+const textarea = document.getElementById("user-code");
+
+textarea.addEventListener("keydown", function(e) {
+    let start = this.selectionStart;
+    let end = this.selectionEnd;
+    const pairs = {"'": "'", '"': '"', "(": ")", "[": "]", "{": "}"};
+
+    // Auto-close bracket/quote
+    if (pairs[e.key]) {
+        e.preventDefault();
+        let closeChar = pairs[e.key];
+        this.value = this.value.slice(0, start) + e.key + closeChar + this.value.slice(end);
+        this.selectionStart = this.selectionEnd = start + 1;
+    }
+
+    // Auto indent saat Enter
+    if (e.key === "Enter") {
+        e.preventDefault();
+        let before = this.value.slice(0, start);
+        let currentLine = before.split("\n").pop();
+        let indent = currentLine.match(/^\s*/)[0];
+        let extraIndent = currentLine.trim().endsWith(":") ? "    " : "";
+        let newPos = start + 1 + indent.length + extraIndent.length;
+        this.value = this.value.slice(0, start) + "\n" + indent + extraIndent + this.value.slice(end);
+        this.selectionStart = this.selectionEnd = newPos;
+    }
+});
+
+// Auto resize textarea
+textarea.addEventListener("input", function() {
+    this.style.height = "auto";
+    this.style.height = (this.scrollHeight) + "px";
+});
+</script>
+</body>
+</html>

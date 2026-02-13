@@ -1,0 +1,244 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Tic Tac Toe Glass 100vh</title>
+<style>
+    @import url('https://fonts.googleapis.com/css2?family=Poppins:wght@400;600&display=swap');
+
+    * {
+        box-sizing: border-box;
+        margin: 0;
+        padding: 0;
+    }
+
+    body {
+        font-family: 'Poppins', sans-serif;
+        background: linear-gradient(135deg, #6a11cb, #2575fc);
+        color: white;
+        height: 100vh;
+        display: flex;
+        flex-direction: column;
+        justify-content: center;
+        align-items: center;
+        overflow: hidden;
+    }
+
+    h1 {
+        font-size: clamp(1.8rem, 2.5vw, 2.5rem);
+        font-weight: 600;
+        text-shadow: 0 2px 10px rgba(0,0,0,0.3);
+        margin-bottom: 10px;
+    }
+
+    .mode-select {
+        margin-bottom: 15px;
+        padding: 10px 15px;
+        backdrop-filter: blur(12px);
+        background: rgba(255, 255, 255, 0.1);
+        border-radius: 15px;
+        box-shadow: 0 4px 20px rgba(0,0,0,0.2);
+        display: flex;
+        gap: 10px;
+        justify-content: center;
+        flex-wrap: wrap;
+    }
+
+    select, button {
+        padding: 8px 15px;
+        border: none;
+        border-radius: 8px;
+        font-size: clamp(0.8rem, 1vw, 1rem);
+        cursor: pointer;
+        font-family: 'Poppins', sans-serif;
+        transition: all 0.3s ease;
+        backdrop-filter: blur(10px);
+        background: rgba(255, 255, 255, 0.15);
+        color: white;
+    }
+
+    button:hover:enabled, select:hover {
+        background: rgba(255, 255, 255, 0.3);
+        transform: scale(1.05);
+    }
+
+    .board {
+        display: grid;
+        grid-template-columns: repeat(3, 1fr);
+        grid-template-rows: repeat(3, 1fr);
+        gap: 12px;
+        width: min(90vw, 400px);
+        height: min(90vw, 400px);
+    }
+
+    .cell {
+        background: rgba(255, 255, 255, 0.15);
+        border-radius: 15px;
+        font-size: clamp(1.5rem, 5vw, 3rem);
+        font-weight: bold;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        cursor: pointer;
+        transition: all 0.3s ease;
+        backdrop-filter: blur(10px);
+        box-shadow: 0 4px 15px rgba(0,0,0,0.2);
+        user-select: none;
+    }
+
+    .cell:hover {
+        background: rgba(255, 255, 255, 0.3);
+        transform: scale(1.08);
+    }
+
+    .winner {
+        font-size: clamp(1rem, 2vw, 1.5rem);
+        margin-top: 10px;
+        text-shadow: 0 2px 5px rgba(0,0,0,0.3);
+        min-height: 35px;
+    }
+
+    .win-glow {
+        color: #ffeb3b;
+        text-shadow: 0 0 10px #ffeb3b, 0 0 20px #ffeb3b, 0 0 30px #ff9800;
+    }
+    .mode{
+        color: white;
+        background: #2575fc;
+    }
+</style>
+</head>
+<body>
+
+<h1>🎮 Tic Tac Toe</h1>
+<div class="mode-select">
+    <select id="mode">
+        <option class="mode" value="ai">Player vs AI</option>
+        <option class="mode" value="pvp">Player vs Player</option>
+    </select>
+    <button onclick="startGame()">Mulai</button>
+</div>
+
+<div class="board" id="board"></div>
+<div class="winner" id="winner"></div>
+
+<script>
+    const boardElement = document.getElementById("board");
+    const winnerElement = document.getElementById("winner");
+    const modeSelect = document.getElementById("mode");
+
+    let board = Array(9).fill("");
+    let currentPlayer = "X";
+    let gameActive = true;
+    let mode = "ai"; 
+
+    const winningConditions = [
+        [0,1,2], [3,4,5], [6,7,8],
+        [0,3,6], [1,4,7], [2,5,8],
+        [0,4,8], [2,4,6]
+    ];
+
+    function startGame() {
+        mode = modeSelect.value;
+        resetGame();
+    }
+
+    function resetGame() {
+        board = Array(9).fill("");
+        currentPlayer = "X";
+        gameActive = true;
+        winnerElement.textContent = "";
+        renderBoard();
+    }
+
+    function renderBoard() {
+        boardElement.innerHTML = "";
+        board.forEach((cell, index) => {
+            const cellElement = document.createElement("div");
+            cellElement.classList.add("cell");
+            cellElement.textContent = cell;
+            cellElement.addEventListener("click", () => handleCellClick(index));
+            boardElement.appendChild(cellElement);
+        });
+    }
+
+    function handleCellClick(index) {
+        if (!gameActive || board[index] !== "") return;
+        board[index] = currentPlayer;
+        renderBoard();
+        checkWinner();
+        if (!gameActive) return;
+
+        if (mode === "ai" && currentPlayer === "X") {
+            currentPlayer = "O";
+            setTimeout(() => {
+                aiMove();
+                renderBoard();
+                checkWinner();
+                currentPlayer = "X";
+            }, 400);
+        } else {
+            currentPlayer = currentPlayer === "X" ? "O" : "X";
+        }
+    }
+
+    function aiMove() {
+        let move = findBestMove();
+        board[move] = "O";
+    }
+
+    function findBestMove() {
+        for (let i = 0; i < board.length; i++) {
+            if (board[i] === "") {
+                board[i] = "O";
+                if (isWinner("O")) { board[i] = ""; return i; }
+                board[i] = "";
+            }
+        }
+        for (let i = 0; i < board.length; i++) {
+            if (board[i] === "") {
+                board[i] = "X";
+                if (isWinner("X")) { board[i] = ""; return i; }
+                board[i] = "";
+            }
+        }
+        let emptyCells = board.map((v, i) => v === "" ? i : null).filter(v => v !== null);
+        return emptyCells[Math.floor(Math.random() * emptyCells.length)];
+    }
+
+    function checkWinner() {
+        let roundWon = false;
+        for (let condition of winningConditions) {
+            let [a, b, c] = condition;
+            if (board[a] && board[a] === board[b] && board[a] === board[c]) {
+                roundWon = true;
+                highlightWinner(condition);
+                break;
+            }
+        }
+        if (roundWon) {
+            winnerElement.innerHTML = `Pemain <span class="win-glow">${currentPlayer}</span> Menang! 🎉`;
+            gameActive = false;
+            return;
+        }
+        if (!board.includes("")) {
+            winnerElement.textContent = "Seri! 🤝";
+            gameActive = false;
+        }
+    }
+
+    function highlightWinner(cells) {
+        const cellElements = document.querySelectorAll(".cell");
+        cells.forEach(i => cellElements[i].classList.add("win-glow"));
+    }
+
+    function isWinner(player) {
+        return winningConditions.some(([a, b, c]) => board[a] === player && board[b] === player && board[c] === player);
+    }
+
+    renderBoard();
+</script>
+
+</body>
+</html>
