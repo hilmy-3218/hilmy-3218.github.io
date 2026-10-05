@@ -37,7 +37,6 @@ header.scrolled {
   background: rgba(10, 32, 41, 0.6);
 }
 
-
 .navbar {
   display: flex;
   padding: 0 10px;
@@ -88,8 +87,8 @@ header a:hover, footer a:hover {
 /* Media query untuk layar sedang (tablet landscape atau desktop kecil) */
 @media screen and (max-width: 1200px) and (min-width: 861px) {
   .navbar .all-links {
-    gap: 8px; /* kurangi gap agar lebih banyak link fit */
-    flex-wrap: wrap; /* pastikan wrap */
+    gap: 8px; 
+    flex-wrap: wrap; 
   }
   .navbar .all-links li a {
     font-size: 14px; /* kurangi font-size jika perlu */
